@@ -2,6 +2,8 @@ package alvaro.lopera.demo.controllers;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +20,8 @@ public class ClientController {
     // The objective is to get a list of customers 
     // For that we will reference a property to hold the repository
     private ClientRepository customers;
-    
+    private ParametersController pc;
+
     // A constructor for our class
     public ClientController( ClientRepository cp ) {
         this.customers = cp;
@@ -34,14 +37,43 @@ public class ClientController {
     @PostMapping("/Client")
     public void createNewCustomer ( @RequestBody Client newCustomer) {
         
-        // creates an empty object Client
-        customers.save(newCustomer);
+       if ( pc.checkCustomerParametrers(newCustomer) ) {
+            // creates an empty object Client
+            customers.save(newCustomer);
+       
+        } else {
+
+            throw new RuntimeException("ERROR: INVALID OBJECT! ");
+
+       }
     }
 
     @PutMapping("/people/{surname}") 
     public void updateCustomer ( @RequestBody Client updatedCustomer , @PathVariable String surname  ) {
 
-             
+        if ( pc.checkCustomerParametrers(updatedCustomer) ) {
+            
+            List<Client> cl = getAllcustomers(); 
+
+            for ( Client c : cl ) {
+
+                if ( c.getSurName().equals(surname) ) {
+                
+                    c.setName( updatedCustomer.getName() );
+                    c.setEmail( updatedCustomer.getEmail() );
+                    c.setBirthday( updatedCustomer.getBirthday() );
+
+                    System.out.println("SUCCES: USER WAS UPDATED!\n");
+                    break;
+                }
+
+            }
+        } else {
+
+            throw new RuntimeException("");
+        
+        }
+
     }
 
     @DeleteMapping("/client/{surname}")
