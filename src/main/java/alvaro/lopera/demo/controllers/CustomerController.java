@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import alvaro.lopera.demo.entities.Client;
+import alvaro.lopera.demo.entities.Customer;
 import alvaro.lopera.demo.repositories.ClientRepository;
 
 public class CustomerController {
@@ -25,39 +25,40 @@ public class CustomerController {
 
 
     @GetMapping
-    public List<Client> getAllcustomers() {
+    public List<Customer> getAllcustomers() {
         
         // this will return a list of customers 
         return customers.findAll();
     }
 
     @GetMapping
-    public Client getCustomer ( @PathVariable String surname ) {
-        return customers.findById(surname).get(); 
+    public Customer getCustomer ( @PathVariable Long id ) {
+        return customers.findById(id).get(); 
     }
 
 
     @PostMapping("/Client")
-    public Client createNewCustomer ( @RequestBody @Validated Client newCustomer) {
+    public Customer createNewCustomer ( @RequestBody @Validated Customer newCustomer) {
         return customers.save(newCustomer);
     }
 
     @PutMapping() 
-    public Client updateCustomer ( @RequestBody Client updatedCustomer ) throws NotFoundException {
+    public Customer updateCustomer ( @RequestBody Customer updatedCustomer ) throws NotFoundException {
 
-        if ( updatedCustomer == null || updatedCustomer.getSurName() == null ) {
+        if ( updatedCustomer == null || updatedCustomer.getId() == null ) {
             throw new InvalidRequestException(" ERROR: Customers or his id cant be null!!\n ");
         }
 
-        Optional<Client> optional = customers.findById(updatedCustomer.getSurName()); 
+        Optional<Customer> optional = customers.findById(updatedCustomer.getId()); 
          
         if ( optional.isEmpty() ) {
             throw new NotFoundException();
         }
 
-        Client customerEx = optional.get();
+        Customer customerEx = optional.get();
 
         customerEx.setName(updatedCustomer.getName());
+        customerEx.setSurName(updatedCustomer.getSurName());
         customerEx.setEmail(updatedCustomer.getEmail());
         customerEx.setBirthday(updatedCustomer.getBirthday());
 
@@ -66,13 +67,13 @@ public class CustomerController {
     }
 
     @DeleteMapping("/client/{surname}")
-    public void deleteCustomer ( @PathVariable String sn ) {
+    public void deleteCustomer ( @PathVariable Long id ) {
 
-        if ( sn == null ) {
+        if ( id == null ) {
              throw new InvalidRequestException(""); 
         }
 
-        customers.deleteById(sn);
+        customers.deleteById(id);
 
     }
 
