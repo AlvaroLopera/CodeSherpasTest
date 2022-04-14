@@ -73,7 +73,7 @@
 				<version>2.21.0</version>
 				<configuration>
 					<includes>
-						<include>PatientRecordControllerTest.java</include>
+						<include>CustomerController.java</include>
 					</includes>
 				</configuration>
 			</plugin>
