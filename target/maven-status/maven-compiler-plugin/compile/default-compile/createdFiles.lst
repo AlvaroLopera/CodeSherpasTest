@@ -1,0 +1,8 @@
+alvaro\lopera\demo\controllers\CustomerController.class
+alvaro\lopera\demo\entities\Customer.class
+alvaro\lopera\demo\repositories\ClientRepository.class
+alvaro\lopera\demo\entities\Client.class
+alvaro\lopera\demo\controllers\InvalidRequestException.class
+alvaro\lopera\demo\controllers\ParametersController.class
+alvaro\lopera\demo\controllers\Controller.class
+alvaro\lopera\demo\DemoApplication.class

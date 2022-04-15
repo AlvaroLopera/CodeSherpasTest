@@ -37,12 +37,12 @@ public class CustomerController {
     }
 
 
-    @PostMapping("/Client")
+    @PostMapping("/Customer")
     public Customer createNewCustomer ( @RequestBody @Validated Customer newCustomer) {
         return customers.save(newCustomer);
     }
 
-    @PutMapping() 
+    @PutMapping("/Customer") 
     public Customer updateCustomer ( @RequestBody Customer updatedCustomer ) throws NotFoundException {
 
         if ( updatedCustomer == null || updatedCustomer.getId() == null ) {
