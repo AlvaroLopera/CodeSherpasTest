@@ -1,17 +1,12 @@
 package alvaro.lopera.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.springframework.lang.NonNull;
 
-@Entity
+@jakarta.persistence.Entity
 public class Customer {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @jakarta.persistence.Id
+    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.AUTO )
     private Long id;
 
     @NonNull
