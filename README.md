@@ -1,4 +1,8 @@
 ﻿# CodeSherpasTest
+ 
+ 
+ 
+* DOCUMENTACION EN ESPAÑOL * 
 
 Este proyecto ha sido desarrollado por Alvaro Lopera Mendizabal.
 
@@ -13,3 +17,34 @@ La aplicacion incluye test unitarios para comprobar su funcionamiento.
 A su vez se ha utilizado un patron de diseño de estilo singleton para una mejor estructuracion del codigo y puesto que era el mas indicado en mi opinion para el desarrollo de la aplicacion. 
 
 
+* ENGLISH DOC *
+
+Project developed by Alvaro Lopera Mendizabal. 
+
+Development tools: 
+
+- Java jdk 1.8 & java 11 or higher.
+
+- Maven 3.+0.0 or higher.
+
+- Spring boot version 2.6.6 or higher. 
+
+- Visual Studio Code as IDE. 
+
+Introduction: 
+
+The topic of this consist on develop an api-rest for a CRUD on java using maven & spring boot. The objective is develop an I/O system where u recive and send data to a database.
+
+Development:
+
+To develop this api we need to include some dependencies to our pom.xml, in this case we used: 
+
+- Lombock for annotanions 
+
+- h2 database (no need of external databases) 
+
+- Spring boot 
+
+- JUnit for unit test.
+
+First thing we need to create a binder named "Entities" where we create our first Java class "Customer.java"  (https://github.com/AlvaroLopera/CodeSherpasTest/blob/0b2a719e6b431b6d32e75d7472113b6f5fb90726/src/main/java/alvaro/lopera/demo/entities/Customer.java)
